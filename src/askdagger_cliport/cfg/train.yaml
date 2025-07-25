@@ -1,0 +1,67 @@
+# Training
+
+defaults:
+  - config
+
+hydra:
+  run:
+    dir: ${train.train_dir}
+
+dataset:
+  images: True
+  cache: False # load episodes to memory instead of reading from disk
+  augment:
+    theta_sigma: 60 # rotation sigma in degrees; N(mu = 0, sigma = theta_sigma).
+
+train:
+  iteration: 0 # iteration of training
+
+  # folders
+  exp_folder: exps
+  train_dir: ${root_dir}/${train.exp_folder}/${train.task}-${train.agent}-n${train.n_demos}-train/${train.iteration}
+  data_dir: ${root_dir}/data/${train.iteration}
+
+  # task configs
+  task: put-block-in-bowl-seen-colors # task to train the model on
+  agent: cliport
+  n_demos: 0 # number of demos to train on
+  n_steps: 201000
+
+  # hyper params
+  n_rotations: 36
+  lr: 0.0001
+  batchnorm: False
+  grad_clip: null
+  weight_decay: 0.0
+
+  attn_stream_fusion_type: 'add'
+  trans_stream_fusion_type: 'conv'
+  lang_fusion_type: 'mult'
+
+  # Dropout params
+  N: 1 # number of dropout evaluations
+  drop_prob: 0.0 # dropout probability
+
+  # script configs
+  gpu: [0] # -1 for all
+  log: False # log metrics and stats to wandb
+  n_val: 100
+  val_repeats: 1
+  save_steps: [1000, 2000, 3000, 4000, 5000, 7000, 10000, 20000, 40000, 80000, 120000, 160000, 200000, 300000, 400000, 500000, 600000, 800000, 1000000, 1200000]
+  load_from_last_ckpt: True
+
+  batch_size: 8
+  n_workers: 8
+
+
+wandb:
+  run_name: askdagger${train.iteration}
+  logger:
+    entity: ${train.agent}
+    project: askdagger-cliport
+    tags: []
+    group: train
+    offline: False
+  saver:
+    upload: True
+    monitor: 'vl/loss'

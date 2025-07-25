@@ -1,0 +1,6 @@
+# @package _global_
+
+root_dir: ${env:ASKDAGGER_ROOT}
+
+tag: default
+debug: False

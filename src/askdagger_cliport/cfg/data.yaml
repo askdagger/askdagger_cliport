@@ -1,0 +1,34 @@
+# Data Generation
+
+defaults:
+  - config
+
+hydra:
+  run:
+    dir: ${root_dir}
+
+iteration: 0
+data_dir: ${root_dir}/data/${iteration}  # where to store dataset
+assets_root: ${root_dir}/src/askdagger_cliport/environments/assets/
+disp: True  # visualize PyBullet
+shared_memory: False
+task: put-block-in-bowl-seen-colors
+mode: val # 'train' or 'val' or 'test'
+n: 100 # number of demos to generate
+save_data: True  # write episodes to disk
+
+dataset:
+  images: True
+  cache: True # load episodes to memory instead of reading from disk
+  augment:
+    theta_sigma: 60 # rotation sigma in degrees; N(mu = 0, sigma = theta_sigma).
+    action_noise: 0.0 # action noise in pixels; N(mu = 0, sigma = action_noise).
+
+# record videos (super slow)
+record:
+  save_video: False
+  save_video_path: ${data_dir}/${task}-${mode}/videos/
+  add_text: False
+  fps: 20
+  video_height: 640
+  video_width: 720

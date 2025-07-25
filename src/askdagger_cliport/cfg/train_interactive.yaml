@@ -1,0 +1,74 @@
+# Evaluation
+
+defaults:
+  - config
+
+train_interactive:
+  load_from_last_ckpt: True # load from last checkpoint
+
+  p_rand: 0.2 # random query probability
+
+  # dropout settings
+  N: 1 # number of dropout evaluations
+  drop_prob: 0.0 # dropout probability
+
+  # PIER settings
+  pier: True # use pier
+  lambda: 0.5 # scaling factor for pier
+  b: 10. # base for pier
+  alpha: 1.5
+  beta0: 1.
+  bias_compensation: True  # ["step", "episode", "false"]
+
+  # SAG parameters
+  s_desired: 0.9 # desired sensitivity when using SAG
+  n_min: 15
+
+  # WandB settings
+  log: False # log to wandb
+  log_window: 50 # Moving average window for logging
+
+  # UQ measure
+  measure: 'entropy' # ['confidence', 'margin', 'entropy', 'geomloss', 'vote_entropy', 'consensus_entropy', 'kl', 'jeffreys', 'prediction_variance', 'conservative_confidence']
+
+  batch_size: 1
+  n_workers: 1 # number of workers for data loading
+
+  lr: 5.e-5 # learning rate
+  grad_clip: null
+  weight_decay: 0.0 # weight decay
+  gpu: [0]
+
+# interactive training settings
+agent: cliport
+iteration: 0 # iteration of interactive training
+train_demos: 0 # training demos used to train model
+interactive_demos: 300 # number of interactive demos
+relabeling_demos: True # collect demos by relabeling
+validation_demos: True # collect demos by validating novice actions
+sag: True # if True, use sensitivity-aware gating, else use budget-aware gating
+save_results: True # write results to json
+save_model: True # save model
+val_on_heldout: False
+train_steps: 0
+save_every: 50 # save every n demos
+max_steps: 8 # max steps for interactive training
+max_epochs: ${max_steps} # max epochs for interactive training
+update_every_episode: False # update every episode or only when collecting a demo
+disp: False
+shared_memory: False
+train_interactive_task: put-block-in-bowl-seen-colors # task to train the model on
+model_task: put-block-in-bowl-seen-colors # task the model was trained on (e.g. multi-language-conditioned or packing-boxes-pairs-seen-colors)
+
+
+# paths
+model_dir: ${root_dir} # path to save models
+exp_folder: exps
+data_dir: ${root_dir}/data
+assets_root: ${root_dir}/src/askdagger_cliport/environments/assets/
+tmp_dir: null # if specified, use this directory for temporary data files (e.g. for faster I/O)
+
+train_config: ${model_dir}/${exp_folder}/${model_task}-${agent}-n${train_demos}-train/${iteration}/.hydra/config.yaml # path to train config
+model_path: ${model_dir}/${exp_folder}/${model_task}-${agent}-n${train_demos}-train/${iteration}/checkpoints # path to pre-trained models
+save_path: ${model_dir}/${exp_folder}/${model_task}-${agent}-n${train_demos}-train/${iteration}/interactive_training/fier_${relabeling_demos}_pier_${train_interactive.pier}_sensitivity_${train_interactive.s_desired} # path to save results
+results_path: ${save_path}

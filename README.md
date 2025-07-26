@@ -161,7 +161,7 @@ Finally, the model can be evaluated as follows:
 python src/askdagger_cliport/eval.py train_demos=25
 ```
 
-## Notebook
+## Notebook and Colab
 
 We have prepared a Jypyter Notebook for getting acquainted with the code.
 This will walk you through the interactive training procedure and visualizes the novice's actions and the demonstrations.
@@ -170,6 +170,8 @@ You can open the notebook by starting Jupyter-Lab:
 jupyter-lab $ASKDAGGER_ROOT
 ```
 and then in Jupyter-Lab you can open `askdagger_cliport.ipynb` in the folder `notebooks`.
+
+The notebook is also available for [Colab](https://colab.research.google.com/github/askdagger/askdagger_cliport/blob/colab/notebooks/askdagger_cliport.ipynb).
 
 ## Credits
 

@@ -107,7 +107,7 @@ def train_interactive(icfg, trial=None):
         return np.mean(interactive_agent._stats["novice_rewards"][-interactive_agent._log_window :])
 
 
-@hydra.main(version_base=1.3, config_path="./cfg", config_name="train_interactive")
+@hydra.main(version_base="1.1", config_path="./cfg", config_name="train_interactive")
 def main(icfg):
     train_interactive(icfg)
 

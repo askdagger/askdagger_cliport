@@ -19,7 +19,7 @@ from omegaconf import OmegaConf
 from askdagger_cliport.dataset import collate_fn
 
 
-@hydra.main(version_base=1.3, config_path="./cfg", config_name="eval")
+@hydra.main(version_base="1.1", config_path="./cfg", config_name="eval")
 def eval(vcfg):
     # Load train cfg
     interactive_demos = vcfg["interactive_demos"]
@@ -42,7 +42,7 @@ def eval(vcfg):
         os.chdir(os.environ["ASKDAGGER_ROOT"])
         with initialize(config_path="cfg"):
             tcfg = compose(
-                version_base=1.3,
+                version_base="1.1",
                 config_name="train",
                 overrides=[
                     f"train.iteration={vcfg['iteration']}",

@@ -15,7 +15,7 @@ import numpy as np
 from transforms3d import euler
 
 import hydra
-from hydra.experimental import compose, initialize
+from hydra import compose, initialize
 
 import pybullet as p
 import kornia

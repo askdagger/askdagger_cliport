@@ -14,7 +14,7 @@ from askdagger_cliport import tasks
 from askdagger_cliport.utils import utils
 from askdagger_cliport.environments.environment import Environment
 from pathlib import Path
-from hydra.experimental import compose, initialize
+from hydra import compose, initialize
 from omegaconf import OmegaConf
 from askdagger_cliport.dataset import collate_fn
 

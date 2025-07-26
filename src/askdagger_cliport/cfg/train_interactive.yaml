@@ -1,6 +1,7 @@
 # Evaluation
 
 defaults:
+  - _self_
   - config
 
 train_interactive:

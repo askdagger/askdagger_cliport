@@ -1,6 +1,7 @@
 # Data Generation
 
 defaults:
+  - _self_
   - config
 
 hydra:

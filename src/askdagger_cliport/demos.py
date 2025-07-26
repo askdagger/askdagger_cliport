@@ -12,7 +12,7 @@ from askdagger_cliport.dataset import RavensDataset
 from askdagger_cliport.environments.environment import Environment
 
 
-@hydra.main(config_path="./cfg", config_name="data")
+@hydra.main(version_base=1.3, config_path="./cfg", config_name="data")
 def demos(cfg):
     # Initialize environment and task.
     env = Environment(

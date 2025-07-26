@@ -1,6 +1,7 @@
 # Training
 
 defaults:
+  - _self_
   - config
 
 hydra:

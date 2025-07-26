@@ -928,7 +928,7 @@ def get_train_cfg(icfg):
         # We then use the train configuration from current train.yaml with some overrides.
         hydra.core.global_hydra.GlobalHydra.instance().clear()
         os.chdir(os.environ["ASKDAGGER_ROOT"])
-        with initialize(config_path="../cfg"):
+        with initialize(version_base=1.3, config_path="../cfg"):
             tcfg = compose(
                 config_name="train",
                 overrides=[

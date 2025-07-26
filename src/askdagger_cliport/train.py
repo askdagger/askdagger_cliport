@@ -16,7 +16,7 @@ from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers import WandbLogger
 
 
-@hydra.main(config_path="./cfg", config_name="train")
+@hydra.main(version_base=1.3, config_path="./cfg", config_name="train")
 def train(cfg):
     # Logger
     wandb_logger = WandbLogger(name=cfg["tag"]) if cfg["train"]["log"] else None

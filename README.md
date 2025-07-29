@@ -216,4 +216,4 @@ Changes: We use the objects as adapted for [CLIPort](https://github.com/cliport/
 
 Original: [https://github.com/milesial/Pytorch-UNet/](https://github.com/milesial/Pytorch-UNet/)  
 License: [GPL 3.0](https://github.com/milesial/Pytorch-UNet/)  
-Changes: Used as is in [unet.py](cliport/models/core/unet.py). Note: This part of the code is GPL 3.0.  
+Changes: Used as is in [unet.py](src/askdagger_cliport/models/core/unet.py). Note: This part of the code is GPL 3.0.  
